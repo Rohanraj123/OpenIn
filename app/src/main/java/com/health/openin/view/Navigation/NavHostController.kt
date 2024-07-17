@@ -13,10 +13,13 @@ import com.health.openin.view.DashBoardScreen
 import com.health.openin.view.LinksScreen
 import com.health.openin.view.ProfileScreen
 import com.health.openin.view.components.CustomBottomNavigationBarWithCanvas
-import androidx.navigation.compose.rememberNavController as rememberNavController1
+import com.health.openin.viewmodel.DashboardScreenViewModel
 
 @Composable
-fun MyApp(navController: NavHostController) {
+fun Navigation(
+    navController: NavHostController,
+    dashboardScreenViewModel: DashboardScreenViewModel
+) {
 
     Scaffold(
         bottomBar = {
@@ -31,7 +34,12 @@ fun MyApp(navController: NavHostController) {
                 startDestination = "dashboard_screen",
                 Modifier.padding(innerPadding)
             ) {
-                composable("dashboard_screen") { DashBoardScreen(navController) }
+                composable("dashboard_screen") {
+                    DashBoardScreen(
+                        navController,
+                        dashboardScreenViewModel
+                    )
+                }
                 composable("profile_screen") { ProfileScreen() }
                 composable("campaigns_screen") { CampaignsScreen() }
                 composable("courses_screen") { CoursesScreen() }

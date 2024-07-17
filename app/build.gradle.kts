@@ -114,6 +114,10 @@ dependencies {
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
+    // Security crypto
+    implementation("androidx.security:security-crypto:1.1.0-alpha03")
+
+
 }
 
 kapt {

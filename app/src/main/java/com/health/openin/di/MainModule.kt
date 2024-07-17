@@ -1,6 +1,10 @@
 package com.health.openin.di
 
+import android.app.Application
+import android.content.Context
 import com.health.openin.data.api.RetrofitApi
+import com.health.openin.data.repo.GetDataRepository
+import com.health.openin.data.repo.GetDataRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,12 +17,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 import kotlin.math.log
 
-private const val BASE_URL=""
+private const val BASE_URL="https://api.inopenapp.com/api/v1/"
 
 @Module
 @InstallIn(SingletonComponent::class)
 class MainModule {
 
+    @Provides
+    @Singleton
+    fun providesContext(app: Application) : Context = app.applicationContext
+
+    @Provides
+    @Singleton
+    fun providesAuthTokenProvider(context: Context): AuthTokenProvider {
+        return AuthTokenProvider(context)
+    }
 
     @Provides
     @Singleton
@@ -57,5 +70,11 @@ class MainModule {
         } catch (e : IllegalArgumentException) {
             throw e
         }
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetDataRepository(retrofitApi: RetrofitApi): GetDataRepository {
+        return GetDataRepositoryImpl(retrofitApi)
     }
 }

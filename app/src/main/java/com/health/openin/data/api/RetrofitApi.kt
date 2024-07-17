@@ -5,8 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface RetrofitApi {
-    @GET
-    fun getData(
-
-    ): Call<Response>
+    @GET("dashboardNew")
+    fun getData(): Call<Response>
 }

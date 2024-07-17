@@ -1,31 +1,35 @@
 package com.health.openin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
+import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.github.mikephil.charting.charts.LineChart
-import com.health.openin.ui.theme.OpenInTheme
-import com.health.openin.util.SetLineChartData
-import com.health.openin.view.Navigation.MyApp
+import com.health.openin.util.TokenManager
+import com.health.openin.view.Navigation.Navigation
+import com.health.openin.viewmodel.DashboardScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            Log.d("MainActivity", "Starting MainActivity.kt file")
+            TokenManager.initialize(this)
+            TokenManager.setToken(stringResource(id = R.string.bearer_token))
+            Log.d("MainActivity", "Initialised token")
+            TokenManager.getToken()
+            Log.d("MainActivity", "Bearer Token : ${TokenManager.getToken()}")
+
+            val dashboardScreenViewModel = hiltViewModel<DashboardScreenViewModel>()
             val navController = rememberNavController()
-            MyApp(navController)
-
-
+            Navigation(
+                navController,
+                dashboardScreenViewModel
+            )
         }
     }
 

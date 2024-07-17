@@ -9,12 +9,12 @@ data class RecentLink(
     @SerializedName("is_favourite"   ) val is_favourite   : Boolean,
     @SerializedName("original_image" ) val original_image : String,
     @SerializedName("smart_link"     ) val smart_link     : String,
-    @SerializedName("thumbnail"      ) val thumbnail      : Any,
+    @SerializedName("thumbnail"      ) val thumbnail      : String?,
     @SerializedName("times_ago"      ) val times_ago      : String,
     @SerializedName("title"          ) val title          : String,
     @SerializedName("total_clicks"   ) val total_clicks   : Int,
     @SerializedName("url_id"         ) val url_id         : Int,
-    @SerializedName("url_prefix"     ) val url_prefix     : Any,
+    @SerializedName("url_prefix"     ) val url_prefix     : String?,
     @SerializedName("url_suffix"     ) val url_suffix     : String,
     @SerializedName("web_link"       ) val web_link       : String
 )
