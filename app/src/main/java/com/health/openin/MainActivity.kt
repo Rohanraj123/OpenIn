@@ -13,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.github.mikephil.charting.charts.LineChart
 import com.health.openin.ui.theme.OpenInTheme
+import com.health.openin.util.SetLineChartData
 import com.health.openin.view.Navigation.MyApp
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +24,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             MyApp(navController)
+
+
         }
     }
+
 }
 

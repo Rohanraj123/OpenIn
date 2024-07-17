@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -49,6 +51,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -72,4 +76,46 @@ dependencies {
     implementation("androidx.compose.material:material:1.4.7")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // Graph
+    implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
+
+    implementation("androidx.compose.runtime:runtime-livedata:1.0.5")
+
+    // Dagger-hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Compose dependencies
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // Coroutines :
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+    implementation("androidx.activity:activity-ktx:1.9.0")
+
+    // coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+
+    // OkHttp Logging Interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    // OkHttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+
+}
+
+kapt {
+    correctErrorTypes = true
 }
